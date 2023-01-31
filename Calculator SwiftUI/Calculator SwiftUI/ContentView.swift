@@ -13,9 +13,9 @@ let primaryColor = Color.init(red: 100/255, green: 116/255, blue: 78/255, opacit
 struct ContentView: View {
     
     let rows = [
-        ["1", "2", "3", "÷"],
+        ["7", "8", "9", "÷"],
         ["4", "5", "6", "×"],
-        ["7", "8", "9", "−"],
+        ["1", "2", "3", "−"],
         [".", "0", "=", "+"]
     ]
     
