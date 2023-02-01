@@ -7,8 +7,31 @@
 //  Link to original author's repo: https://github.com/ajeet-repos/Calculator-SwiftUI/blob/master/Calculator%20SwiftUI/ContentView.swift
 
 import SwiftUI
+//quote enerator
+import Foundation
+
+let headers = [
+    "X-RapidAPI-Key": "27fff86665msh58ffb3b8d4d23a2p16ea7bjsn1d61870588ed",
+    "X-RapidAPI-Host": "healthruwords.p.rapidapi.com"
+]
+
+let request = NSMutableURLRequest(url: NSURL(string: "https://healthruwords.p.rapidapi.com/v1/quotes/?t=Wisdom&maxR=1&size=medium&id=731")! as URL, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 10.0)
+
+
+let session = URLSession.shared
+var finaltext:String!
+let dataTask = session.dataTask(with: request as URLRequest, completionHandler: { (data, response, error) -> Void in
+    if (error != nil) {
+        print(error)
+    } else {
+        let httpResponse = response as? HTTPURLResponse
+    }
+})
+
+
 
 let primaryColor = Color.init(red: 100/255, green: 116/255, blue: 78/255, opacity: 1.0)
+
 
 struct ContentView: View {
     
@@ -19,8 +42,10 @@ struct ContentView: View {
         [".", "0", "=", "+"]
     ]
     
+    //In case API doesn't work
+
     @State var noBeingEntered: String = ""
-    @State var finalValue:String = "CS 4261 Calculator"
+    @State var finalValue:String = finaltext == nil ? ["Have a nice day", "Hope you like math", "Take a break from mental calculation"][Int.random(in: 0..<3)] : finaltext
     @State var calExpression: [String] = []
     
     var body: some View {
